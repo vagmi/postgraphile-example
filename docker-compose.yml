@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:12
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password123
+  graphql:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      DATABASE_URL: postgres://app_graphile:password123@db/reviews?sslmode=disable
+      JWT_SECRET: AVerySecretString
+      PGPASSWORD: password123
+    depends_on:
+      - db
+    links:
+      - db
+
+volumes:
+  pgdata:
