@@ -79,24 +79,31 @@ begin;
 
   grant select on table app.person to app_anonymous, app_user, app_admin;
   grant update, delete on table app.person to app_user, app_admin;
+  grant usage, select on sequence app.person_id_seq to app_anonymous, app_user, app_admin;
 
   grant select on table app.restaurant to app_anonymous, app_user, app_admin;
   grant insert, update, delete on table app.restaurant to app_admin;
-
+  grant usage, select on sequence app.restaurant_id_seq to app_anonymous, app_user, app_admin;
+  
   grant select on table app.menu_item to app_anonymous, app_user, app_admin;
   grant insert, update, delete on table app.menu_item to app_admin;
+  grant usage, select on sequence app.menu_item_id_seq to app_anonymous, app_user, app_admin;
 
   grant select on table app.review to app_anonymous, app_user, app_admin;
   grant insert, update, delete on table app.review to app_user, app_admin;
+  grant usage, select on sequence app.review_id_seq to app_anonymous, app_user, app_admin;
 
   grant select on table app.dish to app_anonymous, app_user, app_admin;
   grant insert, update, delete on table app.dish to app_admin;
+  grant usage, select on sequence app.dish_id_seq to app_anonymous, app_user, app_admin;
 
   grant select on table app.review to app_anonymous, app_user, app_admin;
   grant insert, update, delete on table app.review to app_user, app_admin;
+  grant usage, select on sequence app.review_id_seq to app_anonymous, app_user, app_admin;
 
   grant select on table app.review_dish to app_anonymous, app_user, app_admin;
   grant insert, update, delete on table app.review_dish to app_user, app_admin;
+  grant usage, select on sequence app.review_dish_id_seq to app_anonymous, app_user, app_admin;
 
   grant execute on function app.authenticate(text, text) to app_anonymous, app_user, app_admin;
   grant execute on function app.current_person() to app_anonymous, app_user, app_admin;
