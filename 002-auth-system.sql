@@ -135,6 +135,12 @@ begin;
     on app.review
     for select using (true);
 
+  create policy insert_review
+    on app.review
+    for insert
+    to app_user
+    with check (person_id = nullif(current_setting('jwt.claims.person_id', true), '')::bigint);
+
   create policy update_review_admin
     on app.review
     for all
